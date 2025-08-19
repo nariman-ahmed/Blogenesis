@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Blogenesis.Models
+@inject SignInManager<UserModel> SignInManager
+@inject UserManager<UserModel> UserManager
+
+<div class="flex items-center space-x-4">
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="text-gray-700 hover:text-blue-600" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+        Hello @User.Identity?.Name!
+    </a>
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button type="submit" class="text-gray-700 hover:text-blue-600">
+            Logout
+        </button>
+    </form>
+}
+else
+{
+    <a class="text-gray-700 hover:text-blue-600" asp-area="Identity" asp-page="/Account/Register">
+        Register
+    </a>
+    <a class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700" asp-area="Identity" asp-page="/Account/Login">
+        Login
+    </a>
+}

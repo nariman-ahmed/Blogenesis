@@ -1,0 +1,96 @@
+@model List<BlogModel>
+
+<div class="space-y-6">
+    <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-gray-900">My Blog Posts</h1>
+        <a href="@Url.Action("Create", "Blog")" 
+           class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+            Create New Post
+        </a>
+    </div>
+
+    @if(Model.Count == 0){
+        <div class="bg-white rounded-xl shadow-sm md:p-4 p-2 space-y-4 text-sm font-medium border1" style="width: 580px;">
+            Currently, there are no posts available. Would you like to create the first one?
+        </div>
+    }
+
+    @foreach(var blog in Model){
+        <div class="bg-white shadow overflow-hidden sm:rounded-md">
+            <ul role="list" class="divide-y divide-gray-200">
+                <li>
+                    <div class="px-4 py-4 sm:px-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-lg font-medium text-blue-600 truncate">
+                                    @blog.Title
+                                </p>
+                                <div class="flex items-start gap-3 mt-3 mb-5">
+                                    <div class="min-h-[2.5rem] w-1 bg-gray-300 rounded"></div>
+                                    <p class="text-gray-700 text-sm line-clamp-3 whitespace-pre-line">
+                                        @((blog.Content ?? string.Empty).Split('\n').Take(3).Aggregate((a, b) => a + "\n" + b))
+                                    </p>
+                                </div>
+                                <p class="text-sm text-gray-500 mb-1 mt-4">
+                                    Published on @blog.DateCreated.ToString("MMMM dd, yyyy")
+                                </p>
+                            </div>
+                            <div class="flex space-x-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border @(blog.IsPublished ? "bg-green-100 text-green-800 border-green-400" : "bg-red-100 text-red-800 border-pink-400")">
+                                    @(blog.IsPublished ? "Published" : "Draft")
+                                </span>
+                                <div class="flex items-center space-x-2">
+                                    <!-- edit button -->
+                                    <button class="text-gray-400 hover:text-blue-500">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                    </button>
+                                    <!-- delete button -->
+                                    <button type="button" class="text-gray-400 hover:text-red-500" onclick="openBlogDeleteConfirmation(@blog.Id)">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
+
+<!-- Blog Delete Confirmation Modal -->
+<div id="blogDeleteModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 hidden">
+    <div class="bg-white rounded-lg shadow-2xl p-6 w-full max-w-md relative">
+        <h2 class="text-lg font-semibold mb-4 text-gray-900">Delete Blog Post</h2>
+        <p class="mb-6 text-gray-700">Are you sure you want to delete this blog post? This action cannot be undone.</p>
+        <form id="deleteBlogForm" method="post" action="@Url.Action("DeleteBlog", "Blog")">
+            <input type="hidden" name="BlogId" id="deleteConfirmationBlogId" value="" />
+            <div class="flex justify-end space-x-3">
+                <button type="button" onclick="closeBlogDeleteConfirmation()" class="px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 font-semibold">Cancel</button>
+                <button type="submit" class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 font-semibold shadow">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    function openBlogDeleteConfirmation(blogId) {
+        document.getElementById('deleteConfirmationBlogId').value = blogId;
+        document.getElementById('blogDeleteModal').classList.remove('hidden');
+    }
+    function closeBlogDeleteConfirmation() {
+        document.getElementById('blogDeleteModal').classList.add('hidden');
+    }
+    // Optional: Close modal on outside click
+    document.getElementById('blogDeleteModal').addEventListener('click', function(e) {
+        if (e.target === this) closeBlogDeleteConfirmation();
+    });
+</script>
+}
