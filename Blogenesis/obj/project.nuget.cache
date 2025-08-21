@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gucVo8dPvI8=",
+  "dgSpecHash": "ta6lwacUc9g=",
   "success": true,
-  "projectFilePath": "D:\\Documents\\GitHub\\Blogenesis\\Blogenesis\\Blogenesis\\Blogenesis.csproj",
+  "projectFilePath": "D:\\Documents\\GitHub\\Blogenesis\\Blogenesis\\Blogenesis.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

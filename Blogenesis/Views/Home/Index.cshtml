@@ -85,7 +85,7 @@
                                 <div style="flex-shrink: 0 !important;">
                                     @if (!string.IsNullOrEmpty(blog?.User?.ProfilePicUrl))
                                     {
-                                        <img src="@blog.User.ProfilePicUrl" alt="@(blog?.User?.FullName ?? blog?.User?.UserName)" 
+                                        <img src="@(Url.Content("~/" + blog.User.ProfilePicUrl))" alt="@(blog?.User?.FullName ?? blog?.User?.UserName)" 
                                              style="height: 2.5rem !important; width: 2.5rem !important; border-radius: 50% !important; object-fit: cover !important; border: 2px solid #e5e7eb !important;" />
                                     }
                                     else

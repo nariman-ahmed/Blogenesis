@@ -4890,11 +4890,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\GitHub\\Blogenesis\\Blogenesis\\Blogenesis\\Blogenesis.csproj",
+      "projectUniqueName": "D:\\Documents\\GitHub\\Blogenesis\\Blogenesis\\Blogenesis.csproj",
       "projectName": "Blogenesis",
-      "projectPath": "D:\\Documents\\GitHub\\Blogenesis\\Blogenesis\\Blogenesis\\Blogenesis.csproj",
+      "projectPath": "D:\\Documents\\GitHub\\Blogenesis\\Blogenesis\\Blogenesis.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\GitHub\\Blogenesis\\Blogenesis\\Blogenesis\\obj\\",
+      "outputPath": "D:\\Documents\\GitHub\\Blogenesis\\Blogenesis\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
