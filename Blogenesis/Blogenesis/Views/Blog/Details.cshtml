@@ -5,6 +5,11 @@
     Layout = "_Layout";
 }
 
+@{
+    var subjectTag = Model.Subject;
+    var capitalizedSubject = string.IsNullOrEmpty(subjectTag) ? "" : char.ToUpper(subjectTag[0]) + subjectTag.Substring(1).ToLower();
+}
+
 <!-- Blog Article -->
 <div class="bg-gray-50 min-h-screen">
   <div class="max-w-2xl px-4 pt-4 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto" style="max-width: 900px !important;">
@@ -98,7 +103,7 @@
           <div class="py-8" style="margin-top: 2rem !important; margin-bottom: 2rem !important;">
             <span class="inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 transition-colors font-bold" 
                   style="background-color: #f3f4f6 !important; color: #1f2937 !important; padding: 0.5rem 0.75rem !important; border-radius: 9999px !important; font-size: 0.875rem !important; font-weight: bold !important;">
-              @Model.Subject
+              @capitalizedSubject
             </span>
           </div>
         }

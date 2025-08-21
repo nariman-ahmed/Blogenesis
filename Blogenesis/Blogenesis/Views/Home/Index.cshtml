@@ -75,6 +75,9 @@
             <div style="display: grid !important; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important; gap: 2rem !important; max-width: 1200px !important; margin: 0 auto !important;">
                 @foreach(var blog in Model)
                 {
+                    var subjectTag = blog.Subject;
+                    var capitalizedSubject = string.IsNullOrEmpty(subjectTag) ? "" : char.ToUpper(subjectTag[0]) + subjectTag.Substring(1).ToLower();
+
                     <article style="background-color: white !important; border-radius: 1rem !important; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important; overflow: hidden !important; transition: all 0.3s !important; border: 1px solid #e5e7eb !important;">
                         <div style="padding: 1.5rem !important;">
                             <!-- Author Info -->
@@ -124,7 +127,7 @@
                                     <span>@blog?.ReadTimeMinutes min read</span>
                                 </div>
                                 <span style="display: inline-flex !important; align-items: center !important; padding: 0.25rem 0.625rem !important; border-radius: 9999px !important; font-size: 0.75rem !important; font-weight: 500 !important; background-color: #dbeafe !important; color: #1e40af !important;">
-                                    @blog?.Subject
+                                    @capitalizedSubject
                                 </span>
                             </div>
                         </div>
