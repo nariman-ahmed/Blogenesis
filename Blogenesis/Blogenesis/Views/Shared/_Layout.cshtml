@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Blogenesis</title>
+    <link rel="icon" href="~/favicon.png" type="image/png" />
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 </head>
 <body class="min-h-screen bg-gray-50">
@@ -16,8 +17,8 @@
                             Blogenesis
                         </a>
                         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                            <a class="inline-flex items-center px-1 pt-1 text-gray-700 hover:text-blue-600" asp-controller="Home" asp-action="Index">
-                                Home
+                            <a class="inline-flex items-center px-1 pt-1 text-gray-700 hover:text-blue-600" asp-controller="Home" asp-action="Index" asp-fragment="trending-blogs">
+                                Trending
                             </a>
                             <a class="inline-flex items-center px-1 pt-1 text-gray-700 hover:text-blue-600" asp-controller="Blog" asp-action="Create">
                                 Create Post

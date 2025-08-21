@@ -17,73 +17,73 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Blogenesis
 build_property.RootNamespace = Blogenesis
-build_property.ProjectDir = D:\Documents\UNEEQ\Blogenesis\Blogenesis\
+build_property.ProjectDir = D:\Documents\GitHub\Blogenesis\Blogenesis\Blogenesis\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Documents\UNEEQ\Blogenesis\Blogenesis
+build_property.MSBuildProjectDirectory = D:\Documents\GitHub\Blogenesis\Blogenesis\Blogenesis
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Areas/Identity/Pages/_ViewStart.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Account/Login.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Account/Register.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Backups/loginn.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Backups/loginn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFja3Vwc1xsb2dpbm4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Backups/reg.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Backups/reg.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFja3Vwc1xyZWcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Blog/Create.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Blog/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Blog/Details.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Blog/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Blog/MyBlogs.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Blog/MyBlogs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xNeUJsb2dzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Home/Index.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Shared/Blog/_BlogDeleteConfirmation.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Shared/Blog/_BlogDeleteConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEJsb2dcX0Jsb2dEZWxldGVDb25maXJtYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Shared/_LoginPartial.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/_ViewImports.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/_ViewStart.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/UNEEQ/Blogenesis/Blogenesis/Views/Shared/_Layout.cshtml]
+[D:/Documents/GitHub/Blogenesis/Blogenesis/Blogenesis/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-5bvkt7frqg

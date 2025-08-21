@@ -1,5 +1,9 @@
 @model List<BlogModel>
 
+@{
+    ViewData["Title"] = "My Blog Posts";
+}
+
 <div class="space-y-6">
     <!-- Display success message if exists -->
     @if (TempData["SuccessMessage"] != null)

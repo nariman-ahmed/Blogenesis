@@ -66,6 +66,7 @@ namespace Blogenesis.Controllers
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Wrong password.");
+                return View(loginDto);
             }
 
             //else: all successful
