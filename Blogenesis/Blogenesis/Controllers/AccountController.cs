@@ -97,7 +97,7 @@ namespace Blogenesis.Controllers
             //if all good, just create and add the new user
             var newUser = new UserModel()
             {
-                FullName = registerDto.FirstName + ' ' + registerDto.LastName,
+                FullName = registerDto.UserName,
                 Email = registerDto.Email,
                 UserName = registerDto.Email,
                 NormalizedEmail = registerDto.Email.ToUpperInvariant(),
