@@ -1,0 +1,29 @@
+@model Blogenesis.Models.BlogModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="max-w-3xl mx-auto bg-white shadow rounded-lg p-8 mt-8 relative">
+    <!-- Edit Button -->
+    <a href="@Url.Action("Edit", "Blog", new { id = Model.Id })" 
+       class="absolute top-4 right-4 inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+        <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+        </svg>
+        Edit
+    </a>
+    
+    <h1 class="text-3xl font-bold mb-2 text-blue-700">@Model.Title</h1>
+    <div class="flex items-center text-sm text-gray-500 mb-6">
+        <span>Published on @Model.DateCreated.ToString("MMMM dd, yyyy")</span>
+        <span class="mx-2">|</span>
+        <span>@(Model.IsPublished ? "Published" : "Draft")</span>
+        <span class="mx-2">|</span>
+        <span>Read time: @Model.ReadTimeMinutes min</span>
+    </div>
+    <div class="prose max-w-none mb-6">
+        @Html.Raw(Model.Content)
+    </div>
+    <a href="@Url.Action("MyBlogs", "Blog")" class="text-blue-600 hover:underline">&larr; Back to My Blogs</a>
+</div>

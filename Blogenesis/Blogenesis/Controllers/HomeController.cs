@@ -3,6 +3,7 @@ using Blogenesis.Data;
 using Blogenesis.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blogenesis.Controllers
 {
@@ -14,9 +15,17 @@ namespace Blogenesis.Controllers
             _context = context;
         }
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            //show all blogs
+
+            var allBlogs = await _context.Blogs
+                .Include(b => b.User)
+                .Where(b => b.IsPublished == true)
+                .OrderByDescending(b => b.DateCreated)
+                .ToListAsync(); 
+
+            return View(allBlogs);
         }
 
         
