@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Blogenesis.DTO;
 using Blogenesis.Helpers.Constants;
 using System.Security.Claims;
+using Blogenesis.Services;
+using Blogenesis.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blogenesis.Controllers
 {
@@ -15,10 +18,14 @@ namespace Blogenesis.Controllers
     {
         private readonly UserManager<UserModel> _userManager;
         private readonly SignInManager<UserModel> _signInManager;
-        public AccountController(UserManager<UserModel> userManager, SignInManager<UserModel> signInManager)
+        private readonly ApplicationDbContext _context;
+        private readonly IFilesService _filesService;
+        public AccountController(UserManager<UserModel> userManager, SignInManager<UserModel> signInManager, IFilesService filesService, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _filesService = filesService;
+            _context = context;
         }
         public IActionResult Index()
         {
@@ -127,11 +134,42 @@ namespace Blogenesis.Controllers
             //redirect to home page
             return RedirectToAction("Index", "Home");
         }
-        
+
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> EditUserPic(EditAccountDto editDto)
+        {
+            var loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(loggedInUserId))
+            {
+                // If the user is not logged in, redirect to the login page or handle accordingly
+                return RedirectToAction("Login", "Authentication");
+            }
+
+            var uploadedImageUrl = await _filesService.UploadImageAsync(editDto.NewProfilePic);
+
+            var currentUser = await _context.Users.FirstOrDefaultAsync( u => u.Id == loggedInUserId);
+
+            currentUser.ProfilePicUrl = uploadedImageUrl;
+
+            if (currentUser == null)
+            {
+                // If the user is not logged in, redirect to the login page or handle accordingly
+                return RedirectToAction("Login", "Authentication");
+            }
+
+            _context.Update(currentUser);
+            await _context.SaveChangesAsync();
+
+            // await _usersService.UpdateUserProfilePic(int.Parse(loggedInUserId), uploadedImageUrl);
+
+            return RedirectToAction("MyBlogs", "Blog");
         }
     }
 }

@@ -37,6 +37,30 @@ namespace Blogenesis.Controllers
 
         [Authorize]
         [HttpGet]
+        public async Task<IActionResult> MyBlogs()
+        {
+            var loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(loggedInUserId))
+            {
+                // If the user is not logged in, redirect to the login page or handle accordingly
+                return RedirectToAction("Login", "Account");
+            }
+
+            // Get current user information for profile picture
+            var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == loggedInUserId);
+            ViewBag.CurrentUserProfilePic = currentUser?.ProfilePicUrl;
+
+            //return all said user's blogs in his personal page
+            var allBlogs = await _context.Blogs
+            .Where(b => b.UserId == loggedInUserId)
+            .OrderByDescending(b => b.DateCreated)
+            .ToListAsync();
+
+            return View(allBlogs);
+        }
+
+        [Authorize]
+        [HttpGet]
         public IActionResult Create(string generatedTitle, string generatedContent, string generatedSubject)
         {
             // If we have generated content, pass it to the view
@@ -78,31 +102,13 @@ namespace Blogenesis.Controllers
             return RedirectToAction("MyBlogs");
         }
 
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> MyBlogs()
-        {
-            var loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(loggedInUserId))
-            {
-                // If the user is not logged in, redirect to the login page or handle accordingly
-                return RedirectToAction("Login", "Account");
-            }
 
-            //return all said user's blogs in his personal page
-            var allBlogs = await _context.Blogs
-            .Where(b => b.UserId == loggedInUserId)
-            .OrderByDescending(b => b.DateCreated)
-            .ToListAsync();
-
-            return View(allBlogs);
-        }
-
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var blog = await _context.Blogs.FindAsync(id);
+            var blog = await _context.Blogs
+                .Include(b => b.User)
+                .FirstOrDefaultAsync(b => b.Id == id);
             
             if (blog == null)
             {

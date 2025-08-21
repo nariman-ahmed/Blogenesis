@@ -1,5 +1,6 @@
 using Blogenesis.Data;
 using Blogenesis.Models;
+using Blogenesis.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddIdentity<UserModel, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+// Register custom services
+builder.Services.AddScoped<IFilesService, FilesService>();
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();

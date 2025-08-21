@@ -2,28 +2,135 @@
 
 @{
     ViewData["Title"] = Model.Title;
+    Layout = "_Layout";
 }
 
-<div class="max-w-3xl mx-auto bg-white shadow rounded-lg p-8 mt-8 relative">
-    <!-- Edit Button -->
-    <a href="@Url.Action("Edit", "Blog", new { id = Model.Id })" 
-       class="absolute top-4 right-4 inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
-        <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-        </svg>
-        Edit
-    </a>
-    
-    <h1 class="text-3xl font-bold mb-2 text-blue-700">@Model.Title</h1>
-    <div class="flex items-center text-sm text-gray-500 mb-6">
-        <span>Published on @Model.DateCreated.ToString("MMMM dd, yyyy")</span>
-        <span class="mx-2">|</span>
-        <span>@(Model.IsPublished ? "Published" : "Draft")</span>
-        <span class="mx-2">|</span>
-        <span>Read time: @Model.ReadTimeMinutes min</span>
+<!-- Blog Article -->
+<div class="bg-gray-50 min-h-screen">
+  <div class="max-w-2xl px-4 pt-4 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto" style="max-width: 900px !important;">
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 ml-5" style="max-width: 100% !important;">
+      <div class="max-w-xl mx-auto mt-5 ml-2" style="max-width: 800px !important;">
+      <!-- Avatar Media -->
+      <div class="flex justify-between items-center mb-6">
+        <div class="flex w-full sm:items-center gap-x-5 sm:gap-x-3 mt-3 mb-5">
+          <div class="flex-shrink-0">
+            <img class="w-4 h-4 rounded-full object-cover mr-2" style="width: 50px !important; height: auto !important;" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Author Avatar">
+          </div>
+
+          <div class="flex-grow">
+            <div class="flex justify-between items-center gap-x-2 ml-2 mt-1">
+              <div>
+                <!-- Author Info -->
+                <div class="inline-block">
+                  <div class="sm:mb-1 block text-left">
+                    <span class="font-semibold text-gray-800">
+                      @(Model?.User?.FullName ?? Model?.User?.UserName ?? "Anonymous")
+                    </span>
+                  </div>
+                </div>
+
+                <ul class="text-xs text-gray-500 list-none p-0 m-0">
+                  <li class="inline-block relative pr-6 before:content-[''] before:absolute before:top-1/2 before:right-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-300 before:rounded-full">
+                    @Model?.DateCreated.ToString("MMM dd")  |  
+                  </li>
+                  <li class="inline-block relative pr-6 before:content-[''] before:absolute before:top-1/2 before:right-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-300 before:rounded-full">
+                    @Model?.ReadTimeMinutes min read  
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Button Group -->
+              <div class="flex gap-2">
+                <!-- Edit Button - Show for authenticated users who own the blog -->
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                  var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                  if (Model?.UserId == currentUserId)
+                  {
+                    @* <a href="@Url.Action("Edit", "Blog", new { id = Model.Id })" class="w-20 flex flex-row items-center gap-2 px-3 py-2 bg-gray-500 border border-black">
+                      <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                      </svg>
+                      Edit          BUTTON!!!!
+                    </a> *@
+                  }
+                }
+              </div>
+              <!-- End Button Group -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Avatar Media -->
+
+      <!-- Content -->
+      <div class="space-y-5 md:space-y-8 mt-10">
+        <div class="space-y-3">
+          <h1 class="text-2xl font-bold md:text-3xl text-gray-900 leading-tight">@Model.Title</h1>
+        </div>
+
+        <!-- Blog Content -->
+        <div class="blog-content text-lg text-gray-800 leading-relaxed space-y-4">
+          @Html.Raw(Model.Content)
+        </div>
+
+        <!-- Subject Tag -->
+        @if (!string.IsNullOrEmpty(Model.Subject))
+        {
+          <div class="py-8" style="margin-top: 2rem !important; margin-bottom: 2rem !important;">
+            <span class="inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 transition-colors font-bold" 
+                  style="background-color: #f3f4f6 !important; color: #1f2937 !important; padding: 0.5rem 0.75rem !important; border-radius: 9999px !important; font-size: 0.875rem !important; font-weight: bold !important;">
+              @Model.Subject
+            </span>
+          </div>
+        }
+
+        <!-- Back Navigation -->
+        <div class="pt-8 pb-10 border-t border-gray-200" style="margin-top: 2rem !important; padding-top: 2rem !important; border-top: 1px solid #e5e7eb !important;">
+          <a href="@Url.Action("Index", "Home")" class="inline-flex items-center gap-x-2 text-sm text-blue-600 hover:underline focus:outline-none focus:underline font-medium transition-colors">
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 19-7-7 7-7"/>
+              <path d="M19 12H5"/>
+            </svg>
+            Back to all blogs
+          </a>
+        </div>
+      </div>
+      <!-- End Content -->
     </div>
-    <div class="prose max-w-none mb-6">
-        @Html.Raw(Model.Content)
     </div>
-    <a href="@Url.Action("MyBlogs", "Blog")" class="text-blue-600 hover:underline">&larr; Back to My Blogs</a>
+  </div>
 </div>
+<!-- End Blog Article -->
+
+<style>
+  /* Override any conflicting styles */
+  .blog-content * {
+    max-width: 100% !important;
+  }
+  
+  .blog-content p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  
+  .blog-content h1, .blog-content h2, .blog-content h3, .blog-content h4, .blog-content h5, .blog-content h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .blog-content ul, .blog-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  
+  .blog-content blockquote {
+    border-left: 4px solid #e5e7eb;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+  }
+</style>
+
+
