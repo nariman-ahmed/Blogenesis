@@ -18,7 +18,7 @@
             <div style="display: flex !important; flex-direction: column !important; gap: 1rem !important; align-items: center !important;">
                 @if (User.Identity?.IsAuthenticated == true)
                 {
-                    <a href="@Url.Action("Create", "Blog")" 
+                    <a href="@Url.Action("MyBlogs", "Blog")" 
                        style="display: inline-flex !important; align-items: center !important; padding: 1rem 2rem !important; font-size: 1.125rem !important; font-weight: 600 !important; border-radius: 0.5rem !important; background-color: #2563eb !important; color: white !important; text-decoration: none !important; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important; transition: all 0.3s !important; border: none !important;">
                         Start Writing
                         <svg style="margin-left: 0.5rem !important; width: 1.25rem !important; height: 1.25rem !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@
     <div style="max-width: 1200px !important; margin: 0 auto !important; padding: 0 1rem !important;">
         <div style="display: flex !important; justify-content: space-between !important; align-items: flex-start !important; margin-bottom: 3rem !important; flex-wrap: wrap !important; gap: 1rem !important;">
             <div style="text-align: left !important; flex: 1 !important;">
-                <h2 style="font-size: 2.5rem !important; font-weight: bold !important; color: #1f2937 !important; margin-bottom: 1rem !important;">Trending Blogs</h2>
+                <h2 style="font-size: 2.5rem !important; font-weight: bold !important; color: #1f2937 !important; margin-bottom: 1rem !important;">Latest Blogs</h2>
                 <p style="font-size: 1.25rem !important; color: #6b7280 !important; max-width: 600px !important; margin: 0 !important;">
                     Discover the latest and most popular stories from our community of writers
                 </p>

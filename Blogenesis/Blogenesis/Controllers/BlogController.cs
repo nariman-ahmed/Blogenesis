@@ -218,16 +218,24 @@ namespace Blogenesis.Controllers
                 var apiKey = _configuration["OpenRouter:ApiKey"];
                 var endpoint = "https://openrouter.ai/api/v1/chat/completions";
 
-                var ai_prompt = $"Generate a blog post about {createDto.Subject} with the tone: {createDto.Tone}. I want it to be {createDto.Length} length. Return ONLY the HTML body content (no <html>, <head>, or <body> tags) with headings, subheadings, bullet points, and bold where appropriate. Start directly with the content like <h1>Title</h1><p>Content...</p>";
+                var ai_prompt = $"Write a {createDto.Length} blog article about {createDto.Subject} in a {createDto.Tone} tone. " +
+                    $"Use HTML formatting: <h1> for the main title, <h2> for section headings, <p> for paragraphs, <strong> for emphasis. " +
+                    $"Write it as a flowing article with multiple detailed paragraphs under each heading. " +
+                    $"Do NOT use bullet points, numbered lists, or any markdown formatting. " +
+                    $"Write everything in complete, well-developed paragraphs with detailed explanations, examples, and practical advice. " +
+                    $"Make sure every section has substantial content - multiple paragraphs with real insights and actionable information. " +
+                    $"Focus on providing valuable, comprehensive content through detailed explanations rather than lists. " +
+                    $"Each section should flow naturally and provide in-depth coverage of the topic. " +
+                    $"Return only the HTML content without <html>, <head>, or <body> tags.";
 
                 var requestBody = new
                 {
-                    model = "meta-llama/llama-3.1-8b-instruct",
+                    model = "anthropic/claude-3-haiku",
                     messages = new[]
                     {
                         new { role = "user", content = ai_prompt }
                     },
-                    max_tokens = 4000,
+                    max_tokens = 6000,
                     temperature = 0.7
                 };
 
@@ -283,26 +291,6 @@ namespace Blogenesis.Controllers
                     TempData["GeneratedContent"] = generatedBody;
                     TempData["GeneratedSubject"] = createDto.Subject;
                     TempData["SuccessMessage"] = "AI content generated successfully! You can now edit it below.";
-
-                    var loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    if (string.IsNullOrEmpty(loggedInUserId))
-                    {
-                        // If the user is not logged in, redirect to the login page or handle accordingly
-                        return RedirectToAction("Login", "Account");
-                    }
-
-                    //save to database
-                    var newBlog = new BlogModel
-                    {
-                        Title = generatedTitle,
-                        Content = generatedBody,
-                        Subject = createDto.Subject,
-                        DateCreated = DateTime.UtcNow,
-                        UserId = loggedInUserId
-                    };
-
-                    _context.Blogs.Add(newBlog);
-                    await _context.SaveChangesAsync();
 
                     return RedirectToAction("Create", new
                     {
