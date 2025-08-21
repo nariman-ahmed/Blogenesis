@@ -49,6 +49,7 @@ namespace Blogenesis.Controllers
             // Get current user information for profile picture
             var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == loggedInUserId);
             ViewBag.CurrentUserProfilePic = currentUser?.ProfilePicUrl;
+            ViewBag.CurrentUserName = currentUser?.FullName ?? currentUser?.UserName;
 
             //return all said user's blogs in his personal page
             var allBlogs = await _context.Blogs

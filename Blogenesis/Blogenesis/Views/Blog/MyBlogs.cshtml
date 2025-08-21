@@ -17,12 +17,31 @@
         <div class="flex items-center gap-4">
             <!-- User Profile Picture -->
             <div class="relative">
-                <img id="userProfilePic" 
+                @if (!string.IsNullOrEmpty(ViewBag.CurrentUserProfilePic))
+                {
+                    <img id="userProfilePic" 
+                     src="@(!string.IsNullOrEmpty(ViewBag.CurrentUserProfilePic) ? Url.Content("~/" + ViewBag.CurrentUserProfilePic) : Url.Content("~/images/user-icon.png"))"
+                     alt="User Profile" 
+                     class="rounded-full border-2 border-gray-300 cursor-pointer hover:border-blue-500 transition-colors object-cover"
+                     style="width: 60px !important; height: auto !important; margin-right:0.6rem !important;"
+                     onclick="openProfilePicModal()" />
+                }
+                else
+                {
+                    <div class="rounded-full border-2 border-gray-300 cursor-pointer hover:border-blue-500 transition-colors object-cover flex items-center justify-center" 
+                         style="width: 60px; height: 60px; background: linear-gradient(to right, #3b82f6, #8b5cf6); margin-right:0.6rem;" 
+                         onclick="openProfilePicModal()">
+                        <span class="text-white text-2xl font-bold">
+                            @((ViewBag.CurrentUserName ?? "A").Substring(0, 1).ToUpper())
+                        </span>
+                    </div>
+                }
+                @* <img id="userProfilePic" 
                      src="@(!string.IsNullOrEmpty(ViewBag.CurrentUserProfilePic) ? Url.Content("~/" + ViewBag.CurrentUserProfilePic) : Url.Content("~/images/user-icon.png"))"
                      alt="User Profile" 
                      class="rounded-full border-2 border-gray-300 cursor-pointer hover:border-blue-500 transition-colors object-cover mr-10"
                      style="width: 60px !important; height: auto !important; margin-right:15px !important;"
-                     onclick="openProfilePicModal()">
+                     onclick="openProfilePicModal()"> *@
             </div>
             <h1 class="text-2xl font-bold text-gray-900">My Blog Posts</h1>
         </div>
