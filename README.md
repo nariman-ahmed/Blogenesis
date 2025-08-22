@@ -9,6 +9,9 @@ Whether you’re a professional blogger, a casual writer, or an organization, Bl
 
 ## Check out the demo!
 
+https://github.com/user-attachments/assets/bc765e11-40ed-4d7c-bc8d-220a1df5e3b0
+
+
 
 ---
 
