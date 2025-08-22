@@ -14,7 +14,7 @@ Whether you’re a professional blogger, a casual writer, or an organization, Bl
 
 ## 🚀 Why Blogenesis?  
 Unlike traditional blogging platforms, Blogenesis integrates **AI as a core feature**—not just an add-on. It empowers users to:  
-- Generate blog posts instantly with **AI assistance**.  
+- Generate blog posts instantly with **AI assistance**, accessing **Claude 3** via **OpenRouter**.  
 - Customize the **tone** (Professional, Casual, Conversational, Humorous, Inspirational, and more).  
 - Control the **length** (Short ~300 words, Medium ~600 words, Long ~1000 words).  
 - Choose from **predefined categories** like Technology, Lifestyle, Business, Travel, Health, Food, Education, and Entertainment.  
