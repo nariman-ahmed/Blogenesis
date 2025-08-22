@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Blogenesis")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a55a69f4d7cefaea9dbcf43bab6c6fcca390b674")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5721a5f28e139942d9cdbb4920b4984745d69bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("Blogenesis")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Blogenesis")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
